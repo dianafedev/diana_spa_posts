@@ -4,6 +4,7 @@
             position="bottom-right"
             :offset="[18, 18]"
             style="z-index: 9999"
+            v-if="auth"
         >
             <q-btn
                 class="q-mb-md"
