@@ -35,9 +35,14 @@ const actions = {
                 commit("newPost", response.data);
             });
     },
-    async deletePost({ commit }, deleteId) {
-        await axios.delete(`/posts/${deleteId}`).then((response) => {
+    async editPost({ commit }, { postId }) {
+        await axios.get(`posts/${postId}`).then((response) => {
             console.log(response);
+            commit("editPost", response.data);
+        });
+    },
+    async deletePost({ commit }, { deleteId }) {
+        await axios.delete(`/posts/${deleteId}`).then((response) => {
             commit("removePost", deleteId);
         });
     },
@@ -46,6 +51,7 @@ const actions = {
 const mutations = {
     setPosts: (state, posts) => (state.posts = posts),
     detailPost: (state, post) => (state.post = post),
+    editPost: (state, post) => (state.post = post),
     newPost: (state, post) => state.posts.unshift(post),
     removePost: (state, id) =>
         (state.posts = state.posts.filter((post) => post.id !== id)),

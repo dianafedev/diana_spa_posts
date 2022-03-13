@@ -12,24 +12,23 @@ import axios from "axios";
 import PostListComponent from "../posts/PostListComponent.vue";
 
 export default {
-    name: "AdminComponent",
+    name: "VisitorComponent",
     components: {
         PostListComponent,
     },
     setup() {
         const store = useStore();
         const route = useRoute();
-        const auth = computed(() => store.getters.authData);
-        const items = computed(() => store.getters.allPosts);
 
         onMounted(() => {
-            store.dispatch("fetchPostsAdmin", {
-                auth_id: auth.value,
-            });
+            store.dispatch("fetchPosts");
             store.dispatch("setPage", {
                 name: route.name,
             });
         });
+
+        const auth = computed(() => store.getters.authData);
+        const items = computed(() => store.getters.allPosts);
 
         return {
             auth,

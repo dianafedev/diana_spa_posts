@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
     auth: localStorage.getItem("auth") || null,
+    page: "",
 };
 
 const getters = {
@@ -9,6 +10,7 @@ const getters = {
     loggedIn(state) {
         return state.auth != null;
     },
+    pageName: (state) => state.page,
 };
 
 const actions = {
@@ -28,6 +30,10 @@ const actions = {
         localStorage.removeItem("auth");
         commit("destroyAuth");
     },
+    setPage({ commit }, { name }) {
+        console.log("Vuex Page Name", name);
+        commit("setPage", name);
+    },
 };
 
 const mutations = {
@@ -36,6 +42,9 @@ const mutations = {
     },
     destroyAuth(state) {
         state.auth = null;
+    },
+    setPage(state, name) {
+        state.page = name;
     },
 };
 

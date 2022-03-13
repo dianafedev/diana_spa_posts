@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PostsComponent from "../components/visitor/PostsComponent.vue";
+import VisitorComponent from "../components/visitor/VisitorComponent.vue";
 import AdminComponent from "../components/admin/AdminComponent.vue";
 import store from "../store";
 
@@ -7,7 +7,7 @@ const routes = [
     {
         path: "/",
         name: "posts",
-        component: PostsComponent,
+        component: VisitorComponent,
     },
     {
         path: "/admin",

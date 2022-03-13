@@ -2,10 +2,12 @@
     <q-header elevated>
         <q-toolbar>
             <q-btn flat round dense icon="menu" class="q-mr-sm" />
-            <q-toolbar-title>POST APPS</q-toolbar-title>
+            <q-toolbar-title>{{
+                pageName == "admin" ? "Admin" : "Home Page"
+            }}</q-toolbar-title>
             <q-btn flat round dense icon="favorite" />
-            <q-btn-dropdown color="primary">
-                <q-list>
+            <q-btn-dropdown>
+                <q-list style="width: 210px">
                     <q-item
                         clickable
                         v-close-popup
@@ -61,11 +63,11 @@
                 <div>
                     <q-btn label="Login" type="submit" color="primary" />
                     <q-btn
-                        label="Reset"
-                        type="reset"
                         color="primary"
                         flat
                         class="q-ml-sm"
+                        label="Cancel"
+                        v-close-popup
                     />
                 </div>
             </q-form>
@@ -88,6 +90,7 @@ export default {
         const email = ref("");
 
         const auth = computed(() => store.getters.authData);
+        const pageName = computed(() => store.getters.pageName);
 
         const login = () => {
             store
@@ -113,6 +116,7 @@ export default {
         };
 
         return {
+            pageName,
             isModalsLogin,
             login,
             onReset,
